@@ -2,10 +2,12 @@ library(ggplot2)
 
 source("input.R")
 
+
 shinyServer(function(input, output) {
   points <- reactive({
-    courseA = input$przedmiot1
-    courseB = input$przedmiot2
+    courseA <- map_subject_name_to_code(input$przedmiot1)
+    courseB <- map_subject_name_to_code(input$przedmiot2)
+    
     passed = count_A_by_mark_B_passed(courseA, courseB)
     not_attending = count_A_by_mark_B_not_attending(courseA, courseB)
     failed = count_A_by_mark_B_failed(courseA, courseB)
