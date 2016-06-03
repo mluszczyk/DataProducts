@@ -1,9 +1,10 @@
 source("input.R")
+source("courses.R")
 
-PLOTS_NUMBER = 1
+PLOTS_NUMBER = 2
 
 get_subjects_codes_mock <- function() {
-  c("1000-214bWWW", "1000-224bJNP2", "1000-214bJAO", "1000-213bASD")
+  courses_vector
 }
 
 courses_summary_joined <- function(data) {
@@ -22,7 +23,7 @@ sort_courses <- function(courseB, min_common, filterA) {
   subjects <- get_subjects_codes_mock()
   subjects <- subjects[subjects != courseB]
   
-  rate_data <- data.frame(subject=character(0), rate=numeric(0), stringsAsFactors=FALSE)
+  rate_data <- data.frame(subject=character(0), rate=numeric(0), stringsAsFactors=TRUE)
   
   for (subject in subjects) {
     dataA <- filterA(get_last_grade_for_course(data, subject))
@@ -30,7 +31,7 @@ sort_courses <- function(courseB, min_common, filterA) {
     joined <- dataB %>% inner_join(dataA, by="OSOBA")
     if (count(joined) >= min_common) {
       rate <- compute_rate(joined)
-      rate_data <- rbind(rate_data, c(subject, rate))
+      rate_data <- rbind(rate_data, data.frame(subject=subject, rate=rate))
     }
   }
   names(rate_data) <- c("subject", "rate")

@@ -17,10 +17,12 @@ shinyUI(fluidPage(
                    min = 1, max = 200)
     ),
     mainPanel(
-      textOutput("headerNegative"),
-      plotOutput("corDiagramNegative"),
-      textOutput("headerPositive"),
-      plotOutput("corDiagramPositive")
+      # textOutput("headerNegative"),
+      # plotOutput("corDiagramNegative"),
+      plotOutput("tableNegative"),
+      # textOutput("headerPositive"),
+      # plotOutput("corDiagramPositive"),
+      plotOutput("tablePositive")
     )
   )
 ))

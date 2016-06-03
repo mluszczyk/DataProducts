@@ -1,4 +1,4 @@
-library(ggplot2)
+# library(ggplot2)
 
 source("input.R")
 source("logic.R")
@@ -16,7 +16,7 @@ shinyServer(function(input, output) {
       need(nrow(sorted) > 0, "Brak pasujących przedmiotów")
     )
     # działa tylko przy N = 1
-    c(t(sorted))
+    sorted
   })
   
   negative_subject <- reactive ({
@@ -29,7 +29,7 @@ shinyServer(function(input, output) {
       need(nrow(sorted) > 0, "Brak pasujących przedmiotów")
     )
     # działa tylko przy N = 1
-    c(t(sorted))
+    sorted
   })
   
   plot_for_data <- function(computed_course, data, p_or_f) {
@@ -62,11 +62,14 @@ shinyServer(function(input, output) {
           "lepiej nie wybieraj przedmiotu ", input$przedmiot)
   })
 
-  output$corDiagramPositive = renderPlot(
-    ggplot(points_positive(), aes(x = ocena_przedmiot_B, y = liczba_studentow, color = typ)) + geom_line() + geom_errorbar(aes(ymax = max_err, ymin = min_err)) + ylim(0,1) + ylab("p-stwo uzyskania oceny >= niż")
-  )
+  #output$corDiagramPositive = renderPlot(
+  #  ggplot(points_positive(), aes(x = ocena_przedmiot_B, y = liczba_studentow, color = typ)) + geom_line() + geom_errorbar(aes(ymax = max_err, ymin = min_err)) + ylim(0,1) + ylab("p-stwo uzyskania oceny >= niż")
+  #)
 
-  output$corDiagramNegative = renderPlot(
-    ggplot(points_negative(), aes(x = ocena_przedmiot_B, y = liczba_studentow, color = typ)) + geom_line() +geom_errorbar(aes(ymax = max_err, ymin = min_err)) + ylim(0,1) + ylab("p-stwo uzyskania oceny >= niż")
-  )
+  #output$corDiagramNegative = renderPlot(
+  #  ggplot(points_negative(), aes(x = ocena_przedmiot_B, y = liczba_studentow, color = typ)) + geom_line() +geom_errorbar(aes(ymax = max_err, ymin = min_err)) + ylim(0,1) + ylab("p-stwo uzyskania oceny >= niż")
+  #)
+
+  output$tableNegative = renderDataTable(points_negative())
+  output$tablePositive = renderDataTable(points_positive())
 })
