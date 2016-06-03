@@ -13,16 +13,16 @@ shinyUI(fluidPage(
                   choices = nazwyPrzedmiotow,
                   selected = "1000-214bJAO"
       ),
-      numericInput("min-common", "Minimalna liczba wspólnych studentów", 20,
+      numericInput("min-common", "Minimalna liczba wspólnych studentów", 1,
                    min = 1, max = 200)
     ),
     mainPanel(
       # textOutput("headerNegative"),
       # plotOutput("corDiagramNegative"),
-      plotOutput("tableNegative"),
+      dataTableOutput("tableNegative"),
       # textOutput("headerPositive"),
       # plotOutput("corDiagramPositive"),
-      plotOutput("tablePositive")
+      dataTableOutput("tablePositive")
     )
   )
 ))
