@@ -1,0 +1,11 @@
+Package: courseCorrelation
+Title: Finds Correlations Between CS Courses at University of Warsaw
+Version: 0.0.0.9000
+Authors@R: person("Michał", "Łuszczyk", email = "mluszczyk@users.noreply.github.com", role = c("aut", "cre"))
+Description: Finds similarities between courses based on students' scores.
+Depends: R (>= 3.3.0)
+License: BSD
+Encoding: UTF-8
+LazyData: true
+Imports: dplyr
+Suggests: JDBC
